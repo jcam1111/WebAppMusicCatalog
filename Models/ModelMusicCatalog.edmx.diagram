@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b2d2aa7ca74c433e98ff98e17903a8f1" Name="Diagram1">
+        <EntityTypeShape EntityType="MusicCatalogModel.Artistas" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicCatalogModel.Canciones" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicCatalogModel.Generos" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicCatalogModel.Paises" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <AssociationConnector Association="MusicCatalogModel.FK__Artistas__nacion__1CF15040" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicCatalogModel.FK__Canciones__artis__21B6055D" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicCatalogModel.FK__Canciones__gener__22AA2996" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicCatalogModel.FK__Generos__origen___182C9B23" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

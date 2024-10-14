@@ -1,0 +1,99 @@
+﻿@model IEnumerable<WebAppMusicCatalog.Models.Artistas>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create")
+</p>
+<form asp-controller="Artistas" asp-action="Index">
+    <p>
+        <label>Artista: <input type="text" name="SearchString" /></label>
+        <input type="submit" value="Buscar" />
+    </p>
+</form>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+         
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_nacimiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.genero_musical)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.biografia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.imagen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ruta_archivo_imagen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.url_sitio_web)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_creacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_modificacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Paises.nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @*@Html.DisplayFor(modelItem => item.nombre)*@
+            @Html.ActionLink(item.nombre,
+    "Index", "Canciones",
+    new { artistaId = item.artista_id }, null)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_nacimiento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.genero_musical)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.biografia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.imagen)
+        </td>
+        <td>
+            @*@Html.DisplayFor(modelItem => item.ruta_archivo_imagen)*@
+            <img class="img-responsive" src="@item.ruta_archivo_imagen" width="200" height="200" /> @*/*** Dikkat *****/*@
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.url_sitio_web)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_creacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_modificacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Paises.nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.artista_id }) |
+            @Html.ActionLink("Detalle", "Details", new { id=item.artista_id }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.artista_id })
+        </td>
+    </tr>
+}
+
+</table>

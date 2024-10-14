@@ -1,0 +1,122 @@
+﻿@model WebAppMusicCatalog.Models.Canciones
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Canciones</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.duracion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.duracion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.album)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.album)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.anio_lanzamiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.anio_lanzamiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.letra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.letra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.calificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.calificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ruta_archivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ruta_archivo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.subtitulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subtitulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numero_pista)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numero_pista)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_creacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_creacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_modificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_modificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Artistas.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Artistas.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Generos.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Generos.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.cancion_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

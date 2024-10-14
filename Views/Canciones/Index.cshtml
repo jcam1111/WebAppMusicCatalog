@@ -1,0 +1,105 @@
+﻿@model IEnumerable<WebAppMusicCatalog.Models.Canciones>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.titulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.duracion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.album)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.anio_lanzamiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.letra)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.calificacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ruta_archivo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.subtitulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.numero_pista)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_creacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_modificacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Artistas.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Generos.nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.titulo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.duracion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.album)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.anio_lanzamiento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.letra)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.calificacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ruta_archivo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.subtitulo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.numero_pista)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_creacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_modificacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Artistas.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Generos.nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.cancion_id }) |
+            @Html.ActionLink("Detalle", "Details", new { id=item.cancion_id }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.cancion_id })
+        </td>
+    </tr>
+}
+
+</table>

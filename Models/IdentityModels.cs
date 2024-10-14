@@ -25,6 +25,8 @@ namespace WebAppMusicCatalog.Models
         {
         }
 
+        //public DbSet<Artista> Artistas { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

@@ -1,0 +1,100 @@
+﻿@model WebAppMusicCatalog.Models.Artistas
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Artistas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_nacimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_nacimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.genero_musical)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.genero_musical)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.biografia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.biografia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.imagen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.imagen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ruta_archivo_imagen)
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.ruta_archivo_imagen)*@
+            <img class="img-responsive" src="@Model.ruta_archivo_imagen" width="200" height="200" /> @*/*** Dikkat *****/*@
+
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.url_sitio_web)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.url_sitio_web)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_creacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_creacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_modificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_modificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Paises.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Paises.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.artista_id }) |
+    @Html.ActionLink("Atras a la Lista", "Index")
+</p>

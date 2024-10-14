@@ -1,0 +1,362 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MusicCatalogModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Artistas">
+          <Key>
+            <PropertyRef Name="artista_id" />
+          </Key>
+          <Property Name="artista_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="nacionalidad_pais_id" Type="int" />
+          <Property Name="fecha_nacimiento" Type="date" />
+          <Property Name="genero_musical" Type="varchar" MaxLength="50" />
+          <Property Name="biografia" Type="text" />
+          <Property Name="imagen" Type="varbinary" MaxLength="255" />
+          <Property Name="ruta_archivo_imagen" Type="varchar" MaxLength="255" />
+          <Property Name="url_sitio_web" Type="varchar" MaxLength="255" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Canciones">
+          <Key>
+            <PropertyRef Name="cancion_id" />
+          </Key>
+          <Property Name="cancion_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="titulo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="duracion" Type="time" Precision="7" />
+          <Property Name="artista_id" Type="int" />
+          <Property Name="genero_id" Type="int" />
+          <Property Name="album" Type="varchar" MaxLength="100" />
+          <Property Name="anio_lanzamiento" Type="smallint" />
+          <Property Name="letra" Type="text" />
+          <Property Name="calificacion" Type="float" />
+          <Property Name="ruta_archivo" Type="varchar" MaxLength="255" />
+          <Property Name="subtitulo" Type="varchar" MaxLength="100" />
+          <Property Name="numero_pista" Type="smallint" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Generos">
+          <Key>
+            <PropertyRef Name="genero_id" />
+          </Key>
+          <Property Name="genero_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="descripcion" Type="text" />
+          <Property Name="origen_pais_id" Type="int" />
+          <Property Name="popularidad" Type="float" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Paises">
+          <Key>
+            <PropertyRef Name="pais_id" />
+          </Key>
+          <Property Name="pais_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+        </EntityType>
+        <Association Name="FK__Artistas__nacion__1CF15040">
+          <End Role="Paises" Type="Self.Paises" Multiplicity="0..1" />
+          <End Role="Artistas" Type="Self.Artistas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paises">
+              <PropertyRef Name="pais_id" />
+            </Principal>
+            <Dependent Role="Artistas">
+              <PropertyRef Name="nacionalidad_pais_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Canciones__artis__21B6055D">
+          <End Role="Artistas" Type="Self.Artistas" Multiplicity="0..1" />
+          <End Role="Canciones" Type="Self.Canciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Artistas">
+              <PropertyRef Name="artista_id" />
+            </Principal>
+            <Dependent Role="Canciones">
+              <PropertyRef Name="artista_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Canciones__gener__22AA2996">
+          <End Role="Generos" Type="Self.Generos" Multiplicity="0..1" />
+          <End Role="Canciones" Type="Self.Canciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Generos">
+              <PropertyRef Name="genero_id" />
+            </Principal>
+            <Dependent Role="Canciones">
+              <PropertyRef Name="genero_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Generos__origen___182C9B23">
+          <End Role="Paises" Type="Self.Paises" Multiplicity="0..1" />
+          <End Role="Generos" Type="Self.Generos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paises">
+              <PropertyRef Name="pais_id" />
+            </Principal>
+            <Dependent Role="Generos">
+              <PropertyRef Name="origen_pais_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MusicCatalogModelStoreContainer">
+          <EntitySet Name="Artistas" EntityType="Self.Artistas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Canciones" EntityType="Self.Canciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Generos" EntityType="Self.Generos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Paises" EntityType="Self.Paises" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Artistas__nacion__1CF15040" Association="Self.FK__Artistas__nacion__1CF15040">
+            <End Role="Paises" EntitySet="Paises" />
+            <End Role="Artistas" EntitySet="Artistas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Canciones__artis__21B6055D" Association="Self.FK__Canciones__artis__21B6055D">
+            <End Role="Artistas" EntitySet="Artistas" />
+            <End Role="Canciones" EntitySet="Canciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Canciones__gener__22AA2996" Association="Self.FK__Canciones__gener__22AA2996">
+            <End Role="Generos" EntitySet="Generos" />
+            <End Role="Canciones" EntitySet="Canciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Generos__origen___182C9B23" Association="Self.FK__Generos__origen___182C9B23">
+            <End Role="Paises" EntitySet="Paises" />
+            <End Role="Generos" EntitySet="Generos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MusicCatalogModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Artistas">
+          <Key>
+            <PropertyRef Name="artista_id" />
+          </Key>
+          <Property Name="artista_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nacionalidad_pais_id" Type="Int32" />
+          <Property Name="fecha_nacimiento" Type="DateTime" Precision="0" />
+          <Property Name="genero_musical" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="biografia" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="imagen" Type="Binary" MaxLength="255" FixedLength="false" />
+          <Property Name="ruta_archivo_imagen" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="url_sitio_web" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Paises" Relationship="Self.FK__Artistas__nacion__1CF15040" FromRole="Artistas" ToRole="Paises" />
+          <NavigationProperty Name="Canciones" Relationship="Self.FK__Canciones__artis__21B6055D" FromRole="Artistas" ToRole="Canciones" />
+        </EntityType>
+        <EntityType Name="Canciones">
+          <Key>
+            <PropertyRef Name="cancion_id" />
+          </Key>
+          <Property Name="cancion_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="duracion" Type="Time" Precision="7" />
+          <Property Name="artista_id" Type="Int32" />
+          <Property Name="genero_id" Type="Int32" />
+          <Property Name="album" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="anio_lanzamiento" Type="Int16" />
+          <Property Name="letra" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="calificacion" Type="Double" />
+          <Property Name="ruta_archivo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="subtitulo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="numero_pista" Type="Int16" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Artistas" Relationship="Self.FK__Canciones__artis__21B6055D" FromRole="Canciones" ToRole="Artistas" />
+          <NavigationProperty Name="Generos" Relationship="Self.FK__Canciones__gener__22AA2996" FromRole="Canciones" ToRole="Generos" />
+        </EntityType>
+        <EntityType Name="Generos">
+          <Key>
+            <PropertyRef Name="genero_id" />
+          </Key>
+          <Property Name="genero_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="origen_pais_id" Type="Int32" />
+          <Property Name="popularidad" Type="Double" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Canciones" Relationship="Self.FK__Canciones__gener__22AA2996" FromRole="Generos" ToRole="Canciones" />
+          <NavigationProperty Name="Paises" Relationship="Self.FK__Generos__origen___182C9B23" FromRole="Generos" ToRole="Paises" />
+        </EntityType>
+        <EntityType Name="Paises">
+          <Key>
+            <PropertyRef Name="pais_id" />
+          </Key>
+          <Property Name="pais_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Artistas" Relationship="Self.FK__Artistas__nacion__1CF15040" FromRole="Paises" ToRole="Artistas" />
+          <NavigationProperty Name="Generos" Relationship="Self.FK__Generos__origen___182C9B23" FromRole="Paises" ToRole="Generos" />
+        </EntityType>
+        <Association Name="FK__Artistas__nacion__1CF15040">
+          <End Role="Paises" Type="Self.Paises" Multiplicity="0..1" />
+          <End Role="Artistas" Type="Self.Artistas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paises">
+              <PropertyRef Name="pais_id" />
+            </Principal>
+            <Dependent Role="Artistas">
+              <PropertyRef Name="nacionalidad_pais_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Canciones__artis__21B6055D">
+          <End Role="Artistas" Type="Self.Artistas" Multiplicity="0..1" />
+          <End Role="Canciones" Type="Self.Canciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Artistas">
+              <PropertyRef Name="artista_id" />
+            </Principal>
+            <Dependent Role="Canciones">
+              <PropertyRef Name="artista_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Canciones__gener__22AA2996">
+          <End Role="Generos" Type="Self.Generos" Multiplicity="0..1" />
+          <End Role="Canciones" Type="Self.Canciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Generos">
+              <PropertyRef Name="genero_id" />
+            </Principal>
+            <Dependent Role="Canciones">
+              <PropertyRef Name="genero_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Generos__origen___182C9B23">
+          <End Role="Paises" Type="Self.Paises" Multiplicity="0..1" />
+          <End Role="Generos" Type="Self.Generos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paises">
+              <PropertyRef Name="pais_id" />
+            </Principal>
+            <Dependent Role="Generos">
+              <PropertyRef Name="origen_pais_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MusicCatalogEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Artistas" EntityType="Self.Artistas" />
+          <EntitySet Name="Canciones" EntityType="Self.Canciones" />
+          <EntitySet Name="Generos" EntityType="Self.Generos" />
+          <EntitySet Name="Paises" EntityType="Self.Paises" />
+          <AssociationSet Name="FK__Artistas__nacion__1CF15040" Association="Self.FK__Artistas__nacion__1CF15040">
+            <End Role="Paises" EntitySet="Paises" />
+            <End Role="Artistas" EntitySet="Artistas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Canciones__artis__21B6055D" Association="Self.FK__Canciones__artis__21B6055D">
+            <End Role="Artistas" EntitySet="Artistas" />
+            <End Role="Canciones" EntitySet="Canciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Canciones__gener__22AA2996" Association="Self.FK__Canciones__gener__22AA2996">
+            <End Role="Generos" EntitySet="Generos" />
+            <End Role="Canciones" EntitySet="Canciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Generos__origen___182C9B23" Association="Self.FK__Generos__origen___182C9B23">
+            <End Role="Paises" EntitySet="Paises" />
+            <End Role="Generos" EntitySet="Generos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MusicCatalogModelStoreContainer" CdmEntityContainer="MusicCatalogEntities">
+          <EntitySetMapping Name="Artistas">
+            <EntityTypeMapping TypeName="MusicCatalogModel.Artistas">
+              <MappingFragment StoreEntitySet="Artistas">
+                <ScalarProperty Name="artista_id" ColumnName="artista_id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="nacionalidad_pais_id" ColumnName="nacionalidad_pais_id" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+                <ScalarProperty Name="genero_musical" ColumnName="genero_musical" />
+                <ScalarProperty Name="biografia" ColumnName="biografia" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
+                <ScalarProperty Name="ruta_archivo_imagen" ColumnName="ruta_archivo_imagen" />
+                <ScalarProperty Name="url_sitio_web" ColumnName="url_sitio_web" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Canciones">
+            <EntityTypeMapping TypeName="MusicCatalogModel.Canciones">
+              <MappingFragment StoreEntitySet="Canciones">
+                <ScalarProperty Name="cancion_id" ColumnName="cancion_id" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="duracion" ColumnName="duracion" />
+                <ScalarProperty Name="artista_id" ColumnName="artista_id" />
+                <ScalarProperty Name="genero_id" ColumnName="genero_id" />
+                <ScalarProperty Name="album" ColumnName="album" />
+                <ScalarProperty Name="anio_lanzamiento" ColumnName="anio_lanzamiento" />
+                <ScalarProperty Name="letra" ColumnName="letra" />
+                <ScalarProperty Name="calificacion" ColumnName="calificacion" />
+                <ScalarProperty Name="ruta_archivo" ColumnName="ruta_archivo" />
+                <ScalarProperty Name="subtitulo" ColumnName="subtitulo" />
+                <ScalarProperty Name="numero_pista" ColumnName="numero_pista" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Generos">
+            <EntityTypeMapping TypeName="MusicCatalogModel.Generos">
+              <MappingFragment StoreEntitySet="Generos">
+                <ScalarProperty Name="genero_id" ColumnName="genero_id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="origen_pais_id" ColumnName="origen_pais_id" />
+                <ScalarProperty Name="popularidad" ColumnName="popularidad" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Paises">
+            <EntityTypeMapping TypeName="MusicCatalogModel.Paises">
+              <MappingFragment StoreEntitySet="Paises">
+                <ScalarProperty Name="pais_id" ColumnName="pais_id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

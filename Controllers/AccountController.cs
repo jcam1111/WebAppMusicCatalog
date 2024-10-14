@@ -2,6 +2,8 @@
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -17,6 +19,7 @@ namespace WebAppMusicCatalog.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private MusicCatalogEntities db = new MusicCatalogEntities();
 
         public AccountController()
         {
@@ -55,10 +58,60 @@ namespace WebAppMusicCatalog.Controllers
         //
         // GET: /Account/Login
         [AllowAnonymous]
+        public ActionResult Login2(string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            return View();
+        }
+
+        //
+        // GET: /Account/Login
+        [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
             return View();
+        }
+        // Método para manejar el inicio de sesión
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult Login2(string nombreUsuario, string contraseña)
+        {
+            string hashedContraseña = ObtenerHashSHA256(contraseña); // Método para hashear la contraseña
+
+            var usuario = db.Usuarios.FirstOrDefault(u => u.NombreUsuario == nombreUsuario && u.ContraseñaHash == hashedContraseña);
+
+            if (usuario != null)
+            {
+                // Iniciar sesión (puedes usar FormsAuthentication o manejar la sesión manualmente)
+                Session["Usuario"] = usuario.NombreUsuario;
+                return RedirectToAction("Index", "Home"); // Redirigir a la página principal
+            }
+
+            ModelState.AddModelError("", "Usuario o contraseña incorrectos");
+            return View();
+        }
+
+        // Método para cerrar sesión
+        public ActionResult Logout()
+        {
+            Session.Abandon();
+            return RedirectToAction("Login");
+        }
+
+        private string ObtenerHashSHA256(string input)
+        {
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+
+                StringBuilder builder = new StringBuilder();
+                foreach (var b in bytes)
+                {
+                    builder.Append(b.ToString("x2"));
+                }
+                return builder.ToString();
+            }
         }
 
         //

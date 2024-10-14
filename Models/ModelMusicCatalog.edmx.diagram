@@ -13,6 +13,7 @@
         <AssociationConnector Association="MusicCatalogModel.FK__Canciones__artis__21B6055D" ManuallyRouted="false" />
         <AssociationConnector Association="MusicCatalogModel.FK__Canciones__gener__22AA2996" ManuallyRouted="false" />
         <AssociationConnector Association="MusicCatalogModel.FK__Generos__origen___182C9B23" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MusicCatalogModel.Usuarios" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

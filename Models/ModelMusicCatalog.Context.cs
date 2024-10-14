@@ -29,5 +29,6 @@ namespace WebAppMusicCatalog.Models
         public virtual DbSet<Canciones> Canciones { get; set; }
         public virtual DbSet<Generos> Generos { get; set; }
         public virtual DbSet<Paises> Paises { get; set; }
+        public virtual DbSet<Usuarios> Usuarios { get; set; }
     }
 }

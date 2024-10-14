@@ -17,5 +17,16 @@ namespace WebAppMusicCatalog
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+        //protected void Application_BeginRequest()
+        //{
+        //    //if(HttpContext.Current.Session!=null)
+        //    //    if (HttpContext.Current.Session["Usuario"] == null && !HttpContext.Current.Request.Url.AbsolutePath.Contains("Account"))
+            
+        //        //if (!HttpContext.Current.Request.Url.AbsolutePath.Contains("Account"))
+        //        //{
+        //            HttpContext.Current.Response.Redirect("~/Account/Login2");
+        //        //}
+        //}
+
     }
 }

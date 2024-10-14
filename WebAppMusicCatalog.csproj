@@ -209,6 +209,9 @@
     <Compile Include="Models\Paises.cs">
       <DependentUpon>ModelMusicCatalog.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Usuarios.cs">
+      <DependentUpon>ModelMusicCatalog.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -310,6 +313,7 @@
     <Content Include="Views\Canciones\Details.cshtml" />
     <Content Include="Views\Canciones\Edit.cshtml" />
     <Content Include="Views\Canciones\Index.cshtml" />
+    <Content Include="Views\Account\Login2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

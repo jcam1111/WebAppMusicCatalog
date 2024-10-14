@@ -11,8 +11,7 @@ namespace WebAppMusicCatalog.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Paises
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,7 +22,6 @@ namespace WebAppMusicCatalog.Models
         }
     
         public int pais_id { get; set; }
-        [Display(Name = "Nombre pais")]
         public string nombre { get; set; }
         public Nullable<System.DateTime> fecha_creacion { get; set; }
         public Nullable<System.DateTime> fecha_modificacion { get; set; }

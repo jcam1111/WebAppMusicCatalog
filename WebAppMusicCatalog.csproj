@@ -180,15 +180,9 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
-    <Compile Include="Models\Artistas.cs">
-      <DependentUpon>ModelMusicCatalog.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Canciones.cs">
-      <DependentUpon>ModelMusicCatalog.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Generos.cs">
-      <DependentUpon>ModelMusicCatalog.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\Artistas.cs" />
+    <Compile Include="Models\Canciones.cs" />
+    <Compile Include="Models\Generos.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ModelMusicCatalog.Context.cs">
@@ -206,9 +200,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelMusicCatalog.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Paises.cs">
-      <DependentUpon>ModelMusicCatalog.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\Paises.cs" />
     <Compile Include="Models\Usuarios.cs">
       <DependentUpon>ModelMusicCatalog.tt</DependentUpon>
     </Compile>

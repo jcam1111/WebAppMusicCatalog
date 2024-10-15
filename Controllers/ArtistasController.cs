@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using WebAppMusicCatalog.Models;
 using System.IO;
 using System.Web.Helpers;
+using System.Data.Entity.Validation;
 
 namespace WebAppMusicCatalog.Controllers
 {
@@ -58,7 +59,7 @@ namespace WebAppMusicCatalog.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public async Task<ActionResult> Create([Bind(Include = "artista_id,nombre,nacionalidad_pais_id,fecha_nacimiento,genero_musical,biografia,imagen,ruta_archivo_imagen,url_sitio_web")] Artistas artistas, HttpPostedFileBase ruta_archivo_imagen)
+        public async Task<ActionResult> Create([Bind(Include = "nombre,nacionalidad_pais_id,fecha_nacimiento,genero_musical,biografia,imagen,ruta_archivo_imagen,url_sitio_web")] Artistas artistas, HttpPostedFileBase ruta_archivo_imagen)
         {
             if (ModelState.IsValid)
             {
@@ -76,7 +77,28 @@ namespace WebAppMusicCatalog.Controllers
                     artistas.ruta_archivo_imagen = "/Uploads/Artistas/" + logoname;
                 }
                 db.Artistas.Add(artistas);
-                await db.SaveChangesAsync();
+                
+                try
+                {
+                    // Your code...
+                    // Could also be before try if you know the exception occurs in SaveChanges
+                    await db.SaveChangesAsync();
+                    //context.SaveChanges();
+                }
+                catch (DbEntityValidationException e)
+                {
+                    foreach (var eve in e.EntityValidationErrors)
+                    {
+                        Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                            eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                        foreach (var ve in eve.ValidationErrors)
+                        {
+                            Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                                ve.PropertyName, ve.ErrorMessage);
+                        }
+                    }
+                    throw;
+                }
                 return RedirectToAction("Index");
             }
 

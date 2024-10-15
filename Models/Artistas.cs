@@ -17,7 +17,7 @@ namespace WebAppMusicCatalog.Models
 
         [Key]
         public int artista_id { get; set; }
-        [DisplayName("Nombre")]
+        [DisplayName("Nombre artista")]
         [Required(ErrorMessage = "El nombre es obligatorio.")]
         [StringLength(100, ErrorMessage = "El nombre no puede exceder los 100 caracteres.")]
         public string nombre { get; set; }
@@ -35,9 +35,13 @@ namespace WebAppMusicCatalog.Models
         public byte[] imagen { get; set; }
         [DisplayName("Imagen")]
         public string ruta_archivo_imagen { get; set; }
+
+        [DisplayName("URL sitio web")]
         [DataType(DataType.Url)]
         public string url_sitio_web { get; set; }
+        [DisplayName("Fecha creacion")]
         public Nullable<System.DateTime> fecha_creacion { get; set; }
+        [DisplayName("Fecha modificacion")]
         public Nullable<System.DateTime> fecha_modificacion { get; set; }
 
         public virtual Paises Paises { get; set; }

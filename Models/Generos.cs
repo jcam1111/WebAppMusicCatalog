@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Web;
 
@@ -14,6 +15,7 @@ namespace WebAppMusicCatalog.Models
         }
 
         public int genero_id { get; set; }
+        [DisplayName("Nombre genero")]
         public string nombre { get; set; }
         public string descripcion { get; set; }
         public Nullable<int> origen_pais_id { get; set; }

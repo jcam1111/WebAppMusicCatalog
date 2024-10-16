@@ -11,6 +11,7 @@ using WebAppMusicCatalog.Models;
 
 namespace WebAppMusicCatalog.Controllers
 {
+    [Autorizacion]
     public class CancionesController : Controller
     {
         private MusicCatalogEntities db = new MusicCatalogEntities();

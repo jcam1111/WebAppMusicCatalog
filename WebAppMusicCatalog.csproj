@@ -181,6 +181,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Artistas.cs" />
+    <Compile Include="Models\AutorizacionAttribute.cs" />
     <Compile Include="Models\Canciones.cs" />
     <Compile Include="Models\Generos.cs" />
     <Compile Include="Models\IdentityModels.cs" />

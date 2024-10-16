@@ -83,6 +83,21 @@ namespace WebAppMusicCatalog.Controllers
 
             if (usuario != null)
             {
+                //var result =  SignInManager.PasswordSignInAsync(nombreUsuario, contraseña,false ,  false);
+                //switch (result)
+                //{
+                //    case SignInStatus.Success:
+                //        return RedirectToLocal(returnUrl);
+                //    case SignInStatus.LockedOut:
+                //        return View("Lockout");
+                //    case SignInStatus.RequiresVerification:
+                //        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                //    case SignInStatus.Failure:
+                //    default:
+                //        ModelState.AddModelError("", "Intento de inicio de sesión no válido.");
+                //        return View(model);
+                //}
+
                 // Iniciar sesión (puedes usar FormsAuthentication o manejar la sesión manualmente)
                 Session["Usuario"] = usuario.NombreUsuario;
                 return RedirectToAction("Index", "Home"); // Redirigir a la página principal

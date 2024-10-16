@@ -14,11 +14,13 @@ using System.Data.Entity.Validation;
 
 namespace WebAppMusicCatalog.Controllers
 {
+    [Autorizacion]
     public class ArtistasController : Controller
     {
         private MusicCatalogEntities db = new MusicCatalogEntities();
 
         // GET: Artistas
+        //[Authorize]
         public async Task<ActionResult> Index(string searchString)
         {
             var artistas = db.Artistas.Include(a => a.Paises);
@@ -134,6 +136,13 @@ namespace WebAppMusicCatalog.Controllers
             {                
                 artistas.fecha_modificacion = DateTime.Now;
                 db.Entry(artistas).State = EntityState.Modified;
+
+                if (ruta_archivo_imagen == null)
+                {
+                    Artistas artistas2 = await db.Artistas.FindAsync(artistas.artista_id);
+                    artistas.ruta_archivo_imagen = artistas2.ruta_archivo_imagen;
+                }
+                
                 if (ruta_archivo_imagen != null)
                 {                    
                     WebImage img = new WebImage(ruta_archivo_imagen.InputStream);

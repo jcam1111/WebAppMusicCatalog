@@ -24,6 +24,7 @@ namespace WebAppMusicCatalog.Models
         [DisplayName("Nacionalidad")]        
         public Nullable<int> nacionalidad_pais_id { get; set; }
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DisplayName("Fecha nacimiento")]
         public Nullable<System.DateTime> fecha_nacimiento { get; set; }
         [DisplayName("Genero musical")]
